@@ -7,8 +7,9 @@
 两格
 
 空一行新起一段
-*ctrl+i 斜体*
-**ctrl+b 加粗**
+*ctrl+i 斜体* ctrl+i
+**ctrl+b 加粗** ctrl+b
+~~删除线~~ alt+s
 
 ![康娜](kangna.png)  
 *康娜*
