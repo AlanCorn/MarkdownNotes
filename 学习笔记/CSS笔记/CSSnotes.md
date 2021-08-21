@@ -47,6 +47,13 @@ elector {property: value}
 
 ![模型示意图](img/2021-07-13-19-31-58.png)
 
+## CSS边框
+
+边框属性：
+* border-radius
+* box-shadow
+* border-image
+
 ## 定位
 
 ### 静态定位
