@@ -1,4 +1,25 @@
-# 笔记
+#  笔记
+
+## 初始化脚手架
+
+### 说明
+
+1. Vue 脚手架是 Vue 官方提供的标准化开发工具(开发平台)。
+2. 最新的版本是 4.x。
+3. 文档: https://cli.vuejs.org/zh/。
+
+### 具体步骤
+
+1. (仅第一次执行)全局安装@vue/cli
+	```npm install -g @vue/cli```
+	
+2. **切换到你要创建项目的目录**,然后使用命令创建项目
+
+   ```vue create xxx```
+
+3. 启动项目
+
+   ```npm run serve```
 
 ## 脚手架文件结构
 
@@ -786,7 +807,7 @@ module.exports = {
    <!-- 跳转并携带query参数，to的字符串写法 -->
    <router-link :to="/home/message/detail?id=666&title=你好">跳转</router-link>
    				
-   <!-- 跳转并携带query参数，to的对象写法 -->
+   <!-- 跳转并携带query参数，to的对象写法(t) -->
    <router-link 
    	:to="{
    		path:'/home/message/detail',
@@ -1065,5 +1086,4 @@ module.exports = {
    1. 地址干净，美观 。
    2. 兼容性和hash模式相比略差。
    3. 应用部署上线时需要后端人员支持，解决刷新页面服务端404的问题。
-	 
-	 
+	

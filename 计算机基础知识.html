@@ -1,0 +1,926 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+/**
+ * NexT for Typora
+ * Brought to you by Bill Chen || https://github.com/BillChen2K/typora-theme-next
+ *
+ * - Want code ligatures for JetBrains Mono?
+ * - Search for `font-variant-ligatures: none;` and comment that line.
+ *
+ * - Want to change the font size in exported pdf?
+ * - Change the variable `--export-font-size` below.
+ **/
+
+:root {
+    --base-font-size: 16px;
+    --highlight-color: rgb(0, 160, 160);
+    --text-color: #333;
+    --headings-color: #262a30;
+    --export-font-size: 13px;
+    --select-text-bg-color: #262a30;
+    --select-text-font-color: #eee;
+}
+
+* {
+    /* Disable ligatures */
+    font-variant-ligatures: none;
+}
+
+
+/* latin-ext */
+
+/* latin */
+
+/* latin-ext */
+
+/* latin */
+
+/* latin-ext */
+
+/* latin */
+
+/* latin-ext */
+
+/* latin */
+
+/* latin-ext */
+
+/* latin */
+
+/* latin-ext */
+
+/* latin */
+
+html,
+body,
+#write {
+    color: var(--text-color);
+    font-size: var(--base-font-size);
+    background: #fcfcfc;
+    font-family: Overpass, "GlowSansSC", "Helvetica Neue", "pingfang sc", "microsoft yahei", sans-serif;
+    font-weight: 400;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    /* letter-spacing: -0.5px; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--headings-color);
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 20px 0 15px
+}
+
+.CodeMirror pre {
+    font-family: 'JetBrains Mono';
+    font-size: 0.95em;
+    line-height: 1.65em;
+}
+
+#write {
+    max-width: 914px;
+    text-align: justify;
+}
+
+#write>h1:first-child {
+    margin-top: 1.75rem;
+}
+
+#write>h2:first-child {
+    margin-top: 1.5rem;
+}
+
+#write>h3:first-child {
+    margin-top: 1rem;
+}
+
+#write>h4:first-child {
+    margin-top: 0.5rem;
+}
+
+h1 {
+    font-size: 2.5em
+}
+
+h2 {
+    font-size: 1.75 em
+}
+
+h3 {
+    font-size: 1.45em
+}
+
+h4 {
+    font-size: 1.25em
+}
+
+h5 {
+    font-size: 1.1em
+}
+
+h6 {
+    font-size: 1em;
+    font-weight: bold
+}
+
+#write code {
+    color: var(--highlight-color);
+}
+
+p {
+    color: var(--text-color);
+    line-height: 1.7rem;
+    margin: 0 0 8px;
+}
+
+#write ul {
+    line-height: 1.75rem;
+    margin-block-start: 0.6em;
+    margin-block-end: 0.6em;
+}
+
+#write ol li {
+    line-height: 1.75rem;
+    margin-block-start: 0.6em;
+    margin-block-end: 0.6em;
+}
+
+u {
+    text-decoration: none;
+    border-bottom: 1px solid #999;
+}
+
+#write>h3.md-focus:before {
+    left: -1.875rem;
+    top: 0.5rem;
+    padding: 2px;
+}
+
+#write>h4.md-focus:before {
+    left: -1.875rem;
+    top: 0.3125rem;
+    padding: 2px;
+}
+
+#write>h5.md-focus:before {
+    left: -1.875rem;
+    top: 0.25rem;
+    padding: 2px;
+}
+
+#write>h6.md-focus:before {
+    left: -1.875rem;
+    top: .125rem;
+    padding: 2px;
+}
+
+@media screen and (max-width: 48em) {
+    blockquote {
+        margin-left: 1rem;
+        margin-right: 0;
+        padding: 0.5em;
+    }
+    /* .h1,
+    h1 {
+        font-size: 2.827rem;
+    }
+    .h2,
+    h2 {
+        font-size: 1.999rem;
+    }
+    .h3,
+    h3 {
+        font-size: 1.413rem;
+    }
+    .h4,
+    h4 {
+        font-size: 1.250rem;
+    }
+    .h5,
+    h5 {
+        font-size: 1.150rem;
+    }
+    .h6,
+    h6 {
+        font-size: 1rem;
+    } */
+}
+
+a .md-def-url {
+    color: #262a30;
+}
+
+a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition-duration: 0.5s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 1em;
+    margin: 0 0 20px;
+    width: 100%;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background: #f5f5f5
+}
+
+caption,
+td,
+th {
+    font-weight: 400;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle
+}
+
+table tr th {
+    border-bottom: 3px solid #ddd;
+    font-weight: 700;
+    padding-bottom: 10px;
+    background-color: var(--bg-color);
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+}
+
+th {
+    font-weight: 700;
+    padding-bottom: 10px
+}
+
+td {
+    border-bottom-width: 1px
+}
+
+
+/* Inline Code */
+
+code,
+.md-fences {
+    background: #eee;
+    border-radius: 3px;
+    color: #555;
+    padding: 2px 4px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-family: 'JetBrains Mono';
+    font-size: 0.935em;
+}
+
+
+/* Code Blocks */
+
+.md-fences {
+    margin: 0 0 20px;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    padding: 0.4em 1em;
+    padding-top: 0.4em;
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.task-list-item {
+    padding-left: 2rem;
+}
+
+.task-list-item input {
+    top: 3px;
+}
+
+.task-list-item input {
+    outline: none;
+    margin-bottom: 0.5em;
+}
+
+.task-list-item input::before {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid gray;
+    background-color: #fdfdfd;
+    margin-left: -0.1rem;
+    margin-right: 0.1rem;
+    margin-top: -0.9rem;
+}
+
+.task-list-item input:checked::before {
+    padding-left: 0.125em;
+    content: '✔';
+    /*◘*/
+    font-size: 0.8125rem;
+    line-height: 0.9375rem;
+    margin-top: -0.9rem;
+}
+
+
+/* Chrome 29+ */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    .task-list-item input:before {
+        margin-top: -0.2rem;
+    }
+    .task-list-item input:checked:before,
+    .task-list-item input[checked]:before {
+        margin-top: -0.2rem;
+    }
+}
+
+blockquote {
+    border-left: 4px solid #ddd;
+    color: #666;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 0 15px
+}
+
+blockquote p {
+    color: #666
+}
+
+blockquote cite::before {
+    content: '-';
+    padding: 0 5px
+}
+
+
+/* #write pre.md-meta-block {
+    min-height: 30px;
+    background: #f8f8f8;
+    padding: 1.5em;
+    font-weight: 300;
+    font-size: 1em;
+    padding-bottom: 1.5em;
+    padding-top: 3em;
+    margin-top: -1.5em;
+    color: #999;
+    border-left: 1000px #f8f8f8 solid;
+    margin-left: -1000px;
+    border-right: 1000px #f8f8f8 solid;
+    margin-right: -1000px;
+    margin-bottom: 2em;
+    font-size: 0.8em;
+    line-height: 1.5em;
+    font-family: 'JetBrains Mono';
+} */
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f1f1f1;
+    border: 0;
+    border-radius: 3px;
+    color: hsl(0, 0%, 53%);
+    margin-top: 0 !important;
+    margin-bottom: 2em;
+    font-size: 0.8em;
+    line-height: 1.5em;
+    font-family: 'JetBrains Mono';
+}
+
+.MathJax_Display {
+    font-size: 0.9em;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+p.mathjax-block,
+.mathjax-block {
+    padding-bottom: 0;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: 5px;
+    box-shadow: none;
+}
+
+.md-image>.md-meta {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.md-image>img {
+    margin-top: 2px;
+}
+
+.md-image>.md-meta:first-of-type:before {
+    padding-left: 4px;
+}
+
+#typora-source {
+    color: #555;
+}
+
+
+/** ui for windows **/
+
+#md-searchpanel {
+    border-bottom: 1px solid #ccc;
+}
+
+#md-searchpanel .btn {
+    border: 1px solid #ccc;
+}
+
+#md-notification:before {
+    top: 14px;
+}
+
+#md-notification {
+    background: #eee;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid #ccc;
+}
+
+#write>h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write>h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write>h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write>h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image>.md-meta {
+    border-radius: 3px;
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 5px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #efefef;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+.file-tree-node {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.file-node-title {
+    padding-top: 2px;
+}
+
+.outline-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+/* 
+.modal-footer .btn-default,
+.modal-footer .btn-primary {
+    border: 2px solid #222;
+}
+
+
+
+#md-searchpanel .btn:not(.close-btn):hover {
+    background: #fff;
+    border-color: #222;
+    color: #222;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#md-searchpanel .btn:not(.close-btn) {
+    background: #222;
+    border-color: #222;
+    color: #fff;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    transition-duration: .2s;
+}
+
+.searchpanel-search-option-btn {
+    border-radius: 0px;
+    border: 1px solid #222;
+} */
+
+/* Search panel & UI */
+
+#md-searchpanel .btn {
+    border: none;
+}
+
+#md-searchpanel input {
+    box-shadow: none;
+}
+
+.searchpanel-search-option-btn {
+    border-color: #aaa;
+    border-radius: 0;
+}
+
+.modal-dialog .btn {
+    background: #222;
+    border-width: 2px;
+    border-color: #222;
+    border-radius: 0;
+    color: #fff;
+    display: inline-block;
+    font-size: .875em;
+    line-height: 2rem;
+    padding: 0 20px;
+    margin: 5px;
+    text-decoration: none;
+    transition-delay: 0s;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out
+}
+
+.modal-dialog .btn:hover {
+    background: #eee;
+    border-color: #222;
+    color: #222;
+}
+
+
+/* Printing issue */
+
+.typora-export * {
+    -webkit-print-color-adjust: exact;
+}
+
+.typora-export p {
+    font-size: var(--export-font-size) !important;
+}
+
+.typora-export li {
+    font-size: var(--export-font-size);
+    line-height: 2rem;
+}
+
+.typora-export #write {
+    font-size: var(--export-font-size) !important;
+}
+
+table,
+pre {
+    page-break-inside: avoid;
+}
+
+pre {
+    word-wrap: break-word;
+}
+
+hr {
+    background-image: repeating-linear-gradient(-45deg, #ddd, #ddd 4px, transparent 4px, transparent 8px);
+    border: 0;
+    height: 3px;
+    margin: 40px 0
+}/**
+ * NexT for Typora
+ * Brought to you by Bill Chen || https://github.com/BillChen2K/typora-theme-next
+ *
+ * - Want code ligatures for JetBrains Mono?
+ * - Search for `font-variant-ligatures: none;` and comment that line.
+ **/
+
+@import "";
+* {
+    /* Disable ligatures */
+    font-variant-ligatures: none;
+}
+
+
+/* Helvetica Neue */
+
+html,
+body,
+#write {
+    font-family: HelveticaN, "GlowSansSC", "Helvetica Neue", "pingfang sc", "microsoft yahei", sans-serif;
+}
+
+p {
+    color: var(--text-color);
+    line-height: 1.55rem;
+    margin: 0 0 12.5px;
+}
+
+.task-list-item input::before {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid gray;
+    background-color: #fdfdfd;
+    margin-left: -0.1rem;
+    margin-right: 0.1rem;
+    margin-top: -0.9rem;
+}
+
+.task-list-item input:checked::before {
+    padding-left: 0.125em;
+    content: '✔';
+    /*◘*/
+    font-size: 0.8125rem;
+    line-height: 0.9375rem;
+    margin-top: -0.5rem;
+}
+
+
+</style><title>计算机基础知识</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n433"><a class="md-toc-inner" href="#一何为计算机">一、何为计算机</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n437"><a class="md-toc-inner" href="#二计算机硬件最重要的五大单元">二、计算机硬件最重要的五大单元</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n445"><a class="md-toc-inner" href="#三cpu">三、CPU</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n446"><a class="md-toc-inner" href="#主频"><strong>主频</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n453"><a class="md-toc-inner" href="#核心数"><strong>核心数</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n456"><a class="md-toc-inner" href="#线程数"><strong>线程数</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n459"><a class="md-toc-inner" href="#架构"><strong>架构</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n462"><a class="md-toc-inner" href="#制程"><strong>制程</strong></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n467"><a class="md-toc-inner" href="#四拓展">四、拓展</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n468"><a class="md-toc-inner" href="#一切设计的起点cpu的架构">一切设计的起点：CPU的架构</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n478"><a class="md-toc-inner" href="#x86与arm区别">x86与ARM区别</a></span></p></div><hr /><p>&nbsp;</p><h2 id='一何为计算机'><span>一、何为计算机</span></h2><p><span> </span><strong><span>计算机的定义：</span></strong><span>是利用</span><a href='https://zh.wikipedia.org/wiki/数字电子技术'><span>数字电子技术</span></a><span>，根据一系列指令指示并且自动执行任意算术或逻辑操作串行的设备。通用计算机因有能遵循被称为“</span><a href='https://zh.wikipedia.org/wiki/计算机程序'><span>程序</span></a><span>”的一般操作集的能力而使得它们能够执行极其广泛的任务。</span></p><p><span> </span></p><p><span>即只要有输入设备及输出设备，让我们可以输入数据使改机器产生信息的东西就是计算机，所以生活中很多东西其实都是计算机。</span></p><h2 id='二计算机硬件最重要的五大单元'><span>二、计算机硬件最重要的五大单元</span></h2><p><span> </span><strong><span>输入单元：</span></strong><span>键盘、鼠标、触控屏、麦克风等等</span></p><p><span> </span><strong><span>输出单元：</span></strong><span>屏幕、打印机等</span></p><p><span> </span><strong><span>CPU控制单元：</span></strong><span>主要用于协调各组件与各单元间的工作</span></p><p><span> </span><strong><span>CPU算术逻辑单元：</span></strong><span>主要用于程序运算和逻辑判断</span></p><p><span> </span><strong><span>主存储器（内存）：</span></strong><span>存储CPU需要读取的数据.</span><sup class='md-footnote'><a href='#dfref-footnote-1' name='ref-footnote-1'>1</a></sup></p><p><img src="/home/alancorn/Documents/Markdown/电脑医院/计算机基础知识.assets/image-20211104184401897.png" referrerpolicy="no-referrer" alt="image-20211104184401897"></p><h2 id='三cpu'><span>三、CPU</span></h2><h3 id='主频'><strong><span>主频</span></strong></h3><p><span>主频就是“核心速度”，显示的是当前状态下CPU的工作频率，一般来说，同架构同工艺的CPU,主频越高，运行速度越快，不同系列的CPU往往不能只通过主频高低来判断优劣(如缓存、指令集、CPU位数等都与CPU性能有关系)。</span></p><ul><li><span>睿频</span>
+<span>在运行一个程序时，CPU自动超频到合适的频率工作</span></li><li><span>超频</span>
+<span>搞机人士追求更好的性能，压榨CPU，好处是零成本提高CPU性能，坏处是可能会导致系统运行不稳定，缩短寿命</span></li></ul><h3 id='核心数'><strong><span>核心数</span></strong></h3><p><span>就是物理核心数，多少核就是多少核。</span></p><p><img src="/home/alancorn/Documents/Markdown/电脑医院/计算机基础知识.assets/IMG_20211105_084748.jpg" referrerpolicy="no-referrer" alt="IMG_20211105_084748.jpg"></p><h3 id='线程数'><strong><span>线程数</span></strong></h3><p><span>不少CPU都有“超线程”技术，所谓超线程，就是一种提高核心利用率的方式，简而言之就是能将</span><strong><span>一个物理核心虚拟成两个线程</span></strong><span>。</span></p><p><span>注意：超线程只是一种提高核心利用率的技术，本质上不能代替物理核心！比如同种架构之下，4核心8线程，性能是不如6核6线程的</span></p><h3 id='架构'><strong><span>架构</span></strong></h3><p><span>这是决定CPU性能的</span><strong><span>最重要因素</span></strong><span>(买新不买旧就是这个道理)，抛开架构看核心和主频是不合理的，</span><strong><span>同一代的CPU的架构都是一样的</span></strong><span>，不同阵营的CPU可以通过评测来了解具体的。</span></p><h3 id='制程'><strong><span>制程</span></strong></h3><p><span>指IC内电路与电路之间的距离，一般来说，制程越先进，数值越小，比如10nm比14nm更先进。</span></p><p><img src="/home/alancorn/Documents/Markdown/电脑医院/计算机基础知识.assets/image-20211105082459084.png" referrerpolicy="no-referrer" alt="image-20211105082459084"></p><h2 id='四拓展'><span>四、拓展</span></h2><h4 id='一切设计的起点cpu的架构'><span>一切设计的起点：CPU的架构</span></h4><ul><li><p><em><strong><span>精简指令集</span></strong><span> (Reduced Instruction Set Computer, RISC):</span></em></p><p><span>这种 CPU 的设计中,微指令集较为精简,每个指令的运行时间都很短,完成的动作也很单纯,指令</span>
+<span>的执行效能较佳; 但是若要做复杂的事情,就要由多个指令来完成。</span></p><p><strong><span>ARM架构：</span></strong><span>由于其功耗相比x86低，广泛应用于各种手机和(小型)移动设备使用的CPU，苹果公司的M1系列芯片等。</span></p></li><li><p><em><strong><span>复杂指令集</span></strong><span>(Complex Instruction Set Computer, CISC):</span></em></p><p><span>复杂指令集在微指令集的每个小指令可以执行一些较低阶的硬件操作,指令数目多而且复杂, 每条指令的长度并不相同。因为指令执行较为复杂所以每条指令花费的时间较长, 但每条指令可以处理的工作较为丰富。</span></p><p><strong><span>x86架构/x86_64.</span><sup class='md-footnote'><a href='#dfref-footnote-2' name='ref-footnote-2'>2</a></sup><span>：</span></strong><span>兼容性好广泛用于个人计算机的CPU架构</span></p></li></ul><h4 id='x86与arm区别'><span>x86与ARM区别</span></h4><ol start='' ><li><p><span>性能：如果是在10年前，ARM架构的芯片是无论如何都是比不过x86架构的，但如今intel的常年挤牙膏行为，ARM架构的芯片的性能也在不断追赶甚至赶超x86架构的芯片</span></p></li><li><p><span>拓展能力：x86一直有着ARM无可比拟的拓展能力，x86由于通过“桥”连接显卡、内存、硬盘，便于进行更换和维修，通常具有更长的使用周期。ARM通过专用的数据接口与数据存储设备进行连接，一般在产品设计时就确定好内存和存储。</span></p></li><li><p><span>操作系统兼容性：</span></p><p><span>x86：可以装Windows，Linux，</span><del><span>黑苹果</span></del></p><p><span>ARM：苹果手机装安卓</span><del><span>或者安卓手机装苹果</span></del><span>？我看不行</span></p></li><li><p><span>软件开发的方便性及可使用工具的多样性</span></p><p><span>容器、版本控制工具、文本编辑器、集成开发环境、文本比较工具</span></p></li><li><p><span>功耗：ARM比x86低</span></p></li></ol><p>&nbsp;</p><div class='footnotes-area'  ><hr/>
+<div class='footnote-line'><span class='md-fn-count'>1</span> <span>拓展资料：</span><a href='https://baike.baidu.com/item/%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2463725'><span>内存操作系统</span></a><span>，开机后将系统读取到内存中，系统完全依赖于内存和CPU运行，比较接近生活的案例是网吧</span> <a name='dfref-footnote-1' href='#ref-footnote-1' title='回到文档' class='reversefootnote' >↩</a></div>
+<div class='footnote-line'><span class='md-fn-count'>2</span> <span>64 位的个人计算机 CPU 又被统称为 x86_64 的架构</span> <a name='dfref-footnote-2' href='#ref-footnote-2' title='回到文档' class='reversefootnote' >↩</a></div></div></div></div>
+</body>
+</html>
