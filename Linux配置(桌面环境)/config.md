@@ -10,3 +10,6 @@ Plasma视觉风格：WhiteSur-dark
 光标：Sunset Cursors
 欢迎屏幕：Arch
 SDDM：McMojave
+KDE widegts
+nowplaying
+medaibar
