@@ -13,3 +13,4 @@ SDDM：McMojave
 KDE widegts
 nowplaying
 medaibar
+avalon menu
